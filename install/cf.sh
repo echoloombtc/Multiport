@@ -25,13 +25,13 @@ exit 0
 fi
 clear
 apt install jq curl -y
-DOMAIN=aixxy.cloud
-sub=$(</dev/urandom tr -dc a-z0-9 | head -c4)
-SUB_DOMAIN=${sub}.aixxy.cloud
+sub=$(</dev/urandom tr -dc a-z | head -c4)
+DOMAIN=aixxy.software
+SUB_DOMAIN=${sub}-vip.aixxy.software
 CF_ID=zkendev@gmail.com
 CF_KEY=c0edd90f0a64eea5009e21ebd3189c1c9eccc
 set -euo pipefail
-IP=$(wget -qO- icanhazip.com);
+IP=$(curl -sS ifconfig.me);
 echo "Updating DNS for ${SUB_DOMAIN}..."
 ZONE=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones?name=${DOMAIN}&status=active" \
      -H "X-Auth-Email: ${CF_ID}" \
@@ -56,7 +56,14 @@ RESULT=$(curl -sLX PUT "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_r
      -H "X-Auth-Key: ${CF_KEY}" \
      -H "Content-Type: application/json" \
      --data '{"type":"A","name":"'${SUB_DOMAIN}'","content":"'${IP}'","ttl":120,"proxied":false}')
+     
 echo "Host : $SUB_DOMAIN"
-echo "IP=" >> /var/lib/premium-script/ipvps.conf
 echo $SUB_DOMAIN > /root/domain
+echo "IP=$SUB_DOMAIN" > /var/lib/scrz-prem/ipvps.conf
+sleep 1
+yellow() { echo -e "\\033[33;1m${*}\\033[0m"; }
+yellow "Domain added.."
+sleep 3
+domain=$(cat /root/domain)
+cp -r /root/domain /etc/xray/domain
 rm -f /root/cf.sh
