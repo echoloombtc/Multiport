@@ -176,7 +176,7 @@ echo -e "  \e[$number (•4)\e[m \e[$below XRAY BUG \e[m"
 echo -e "  \e[$number (•5)\e[m \e[$below SYSTEM MENU\e[m"
 echo -e "  \e[$number (•6)\e[m \e[$below CHECK RUNNING\e[m"
 echo -e "  \e[$number (•7)\e[m \e[$below CHANGE PORT\e[m"
-echo -e "  \e[$number (•8)\e[m \e[$below REBOOT VPS\e[m
+echo -e "  \e[$number (•8)\e[m \e[$below REBOOT VPS\e[m"
 echo -e "  \e[$number (•9)\e[m \e[$below MENU THEMES\e[m"
 echo -e "  \e[$number (10)\e[m \e[$below REGIP ADMIN ONLY\e[m"
 echo -e "  \e[$number (11)\e[m \e[$below INFO ALL PORT\e[m"
