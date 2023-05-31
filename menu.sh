@@ -148,35 +148,30 @@ number=$(cat /etc/number)
 banner=$(cat /usr/bin/bannerku)
 ascii=$(cat /usr/bin/test)
 clear
-echo -e "\e[032;1mCPU Model:\e[0m $cname"
-echo -e "\e[032;1mNumber Of Cores:\e[0m $cores"
-echo -e "\e[032;1mCPU Frequency:\e[0m $freq MHz"
-echo -e "\e[032;1mTotal Amount Of RAM:\e[0m $tram MB"
-echo -e "\e[032;1mSystem Uptime:\e[0m $uptime"
+echo "--------------- Welcome Premium Script -------------------"
+echo "--------------- Kenn Hiroyuki x Alexxa -------------------"
 echo -e "\e[032;1mIsp Name:\e[0m $ISP"
-echo -e "\e[032;1mCity:\e[0m $CITY"
-echo -e "\e[032;1mTime:\e[0m $WKT"
-echo -e "\e[033;1mIPVPS:\e[0m $IPVPS"
+echo -e "\e[032;1mNumber Of Cores:\e[0m $cores"
+echo -e "\e[032;1mTotal Amount Of RAM:\e[0m $tram MB"
+echo -e "\e[032;1mUsed RAM             : $uram MB"
+echo -e "\e[032;1mFree RAM             : $fram MB"
+echo -e "\e[032;1mSystem Uptime:\e[0m $uptime"
 echo -e "-----------------------------------------------------"
 echo -e "PENGGUNAAN BANDWIDTH"
 echo -e "${BIBlue} Today   : $ttoday"
-echo -e "${BIBlue} Monthly : $tmon"
+echo -e "\e[033;1mIPVPS:\e[0m $IPVPS"
+echo -e "\e[033;1mDOMAIN:\e[0m $domain"
 echo -e "-----------------------------------------------------"
 echo -e "Menu Utama" | lolcat -a -d 10
-echo -e "  \e[$number (•1)\e[m \e[$below XRAY VMESS & VLESS\e[m"
-echo -e "  \e[$number (•2)\e[m \e[$below TROJAN XRAY & WS\e[m"
-echo -e "  \e[$number (•3)\e[m \e[$below OPENSSH & OPENVPN\e[m" 
-echo -e "  \e[$number (•4)\e[m \e[$below XRAY BUG \e[m"
-echo -e "  \e[$number (•5)\e[m \e[$below SYSTEM MENU\e[m"
-echo -e "  \e[$number (•6)\e[m \e[$below CHECK RUNNING\e[m"
-echo -e "  \e[$number (•7)\e[m \e[$below CHANGE PORT\e[m"
-echo -e "  \e[$number (•8)\e[m \e[$below REBOOT VPS\e[m"
-echo -e "  \e[$number (•9)\e[m \e[$below MENU THEMES\e[m"
-echo -e "  \e[$number (10)\e[m \e[$below REGIP ADMIN ONLY\e[m"
-echo -e "  \e[$number (11)\e[m \e[$below INFO ALL PORT\e[m"
-echo -e "  \e[$number (12)\e[m \e[$below CLEAR LOG VPS\e[m"
-echo -e "  \e[$below[Ctrl + C] For exit from main menu\e[m"
-echo -e "  \e[32mContact @aixxy7 t.me/aixxy7\e[m"
+echo -e "\e[$number (•1)\e[m \e[$below Control Panel Xray\e[m"
+echo -e "\e[$number (•2)\e[m \e[$below Control Panel Trojan\e[m"
+echo -e "\e[$number (•3)\e[m \e[$below Control Panel SSH && OVPN\e[m" 
+echo -e "\e[$number (•4)\e[m \e[$below Menu System\e[m"
+echo -e "\e[$number (•5)\e[m \e[$below Check Running\e[m"
+echo -e "\e[$below[Ctrl + C] For exit from main menu\e[m"
+echo -e "\e[033;1mTime:\e[0m $WKT"
+echo -e "\e[32mContact @aixxy7 t.me/aixxy7\e[m"
+echo -e "\e[32mWebsite aixxyssh.com\e[m"
 echo -e ""
 echo -e "\e[$below "
 read -p " Select menu :  " menu
@@ -192,31 +187,10 @@ case $menu in
     ssh
     ;;
 4)
-    maxisdigi
-    ;;
-5)
     system
     ;;
-6)
+5)
     check-sc
-    ;;
-7)
-    change-port
-    ;;
-8)
-    reboot
-    ;;
-9)
-    themes
-    ;;
-10)
-    addip
-    ;;
-11)
-    about
-    ;;
-12)
-    clear-log
     ;;
 x)
     clear
