@@ -4,6 +4,44 @@ GitUser="kenDevXD"
 #IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
 clear
+#warna
+BIBlack='\033[1;90m'      # Black
+BIRed='\033[1;91m'        # Red
+BIGreen='\033[1;92m'      # Green
+BIYellow='\033[1;93m'     # Yellow
+BIBlue='\033[1;94m'       # Blue
+BIPurple='\033[1;95m'     # Purple
+BICyan='\033[1;96m'       # Cyan
+BIWhite='\033[1;97m'      # White
+UWhite='\033[4;37m'       # White
+On_IPurple='\033[0;105m'  #
+On_IRed='\033[0;101m'
+IBlack='\033[0;90m'       # Black
+IRed='\033[0;91m'         # Red
+IGreen='\033[0;92m'       # Green
+IYellow='\033[0;93m'      # Yellow
+IBlue='\033[0;94m'        # Blue
+IPurple='\033[0;95m'      # Purple
+ICyan='\033[0;96m'        # Cyan
+IWhite='\033[0;97m'       # White
+NC='\e[0m'
+export RED='\033[0;31m'
+export GREEN='\033[0;32m'
+export YELLOW='\033[0;33m'
+export BLUE='\033[0;34m'
+export PURPLE='\033[0;35m'
+export CYAN='\033[0;36m'
+export LIGHT='\033[0;37m'
+export NC='\033[0m'
+export EROR="[${RED} EROR ${NC}]"
+export INFO="[${YELLOW} INFO ${NC}]"
+export OKEY="[${GREEN} OKEY ${NC}]"
+export PENDING="[${YELLOW} PENDING ${NC}]"
+export SEND="[${YELLOW} SEND ${NC}]"
+export RECEIVE="[${YELLOW} RECEIVE ${NC}]"
+export BOLD="\e[1m"
+export WARNING="${RED}\e[5m"
+export UNDERLINE="\e[4m"
 #Domain
 domain=$(cat /usr/local/etc/xray/domain)
 ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10)
@@ -57,45 +95,8 @@ clear
 vnstat_profile=$(vnstat | sed -n '3p' | awk '{print $1}' | grep -o '[^:]*')
 vnstat -i ${vnstat_profile} >/root/t1
 bulan=$(date +%b)
-today=$(vnstat -i ${vnstat_profile} | grep today | awk '{print $8}')
-todayd=$(vnstat -i ${vnstat_profile} | grep today | awk '{print $8}')
-today_v=$(vnstat -i ${vnstat_profile} | grep today | awk '{print $9}')
-today_rx=$(vnstat -i ${vnstat_profile} | grep today | awk '{print $2}')
-today_rxv=$(vnstat -i ${vnstat_profile} | grep today | awk '{print $3}')
-today_tx=$(vnstat -i ${vnstat_profile} | grep today | awk '{print $5}')
-today_txv=$(vnstat -i ${vnstat_profile} | grep today | awk '{print $6}')
-if [ "$(grep -wc ${bulan} /root/t1)" != '0' ]; then
-    bulan=$(date +%b)
-    month=$(vnstat -i ${vnstat_profile} | grep "$bulan " | awk '{print $9}')
-    month_v=$(vnstat -i ${vnstat_profile} | grep "$bulan " | awk '{print $10}')
-    month_rx=$(vnstat -i ${vnstat_profile} | grep "$bulan " | awk '{print $3}')
-    month_rxv=$(vnstat -i ${vnstat_profile} | grep "$bulan " | awk '{print $4}')
-    month_tx=$(vnstat -i ${vnstat_profile} | grep "$bulan " | awk '{print $6}')
-    month_txv=$(vnstat -i ${vnstat_profile} | grep "$bulan " | awk '{print $7}')
-else
-    bulan=$(date +%Y-%m)
-    month=$(vnstat -i ${vnstat_profile} | grep "$bulan " | awk '{print $8}')
-    month_v=$(vnstat -i ${vnstat_profile} | grep "$bulan " | awk '{print $9}')
-    month_rx=$(vnstat -i ${vnstat_profile} | grep "$bulan " | awk '{print $2}')
-    month_rxv=$(vnstat -i ${vnstat_profile} | grep "$bulan " | awk '{print $3}')
-    month_tx=$(vnstat -i ${vnstat_profile} | grep "$bulan " | awk '{print $5}')
-    month_txv=$(vnstat -i ${vnstat_profile} | grep "$bulan " | awk '{print $6}')
-fi
-if [ "$(grep -wc yesterday /root/t1)" != '0' ]; then
-    yesterday=$(vnstat -i ${vnstat_profile} | grep yesterday | awk '{print $8}')
-    yesterday_v=$(vnstat -i ${vnstat_profile} | grep yesterday | awk '{print $9}')
-    yesterday_rx=$(vnstat -i ${vnstat_profile} | grep yesterday | awk '{print $2}')
-    yesterday_rxv=$(vnstat -i ${vnstat_profile} | grep yesterday | awk '{print $3}')
-    yesterday_tx=$(vnstat -i ${vnstat_profile} | grep yesterday | awk '{print $5}')
-    yesterday_txv=$(vnstat -i ${vnstat_profile} | grep yesterday | awk '{print $6}')
-else
-    yesterday=NULL
-    yesterday_v=NULL
-    yesterday_rx=NULL
-    yesterday_rxv=NULL
-    yesterday_tx=NULL
-    yesterday_txv=NULL
-fi
+ttoday="$(vnstat | grep today | awk '{print $8" "substr ($9, 1, 3)}' | head -1)"
+tmon="$(vnstat -m | grep `date +%G-%m` | awk '{print $8" "substr ($9, 1 ,3)}' | head -1)"
 
 # STATUS EXPIRED ACTIVE
 Green_font_prefix="\033[32m" && Red_font_prefix="\033[31m" && Green_background_prefix="\033[42;37m" && Red_background_prefix="\033[4$below" && Font_color_suffix="\033[0m"
@@ -147,8 +148,6 @@ number=$(cat /etc/number)
 banner=$(cat /usr/bin/bannerku)
 ascii=$(cat /usr/bin/test)
 clear
-echo -e "\e[$banner_colour"
-figlet -f $ascii "$banner"
 echo -e "\e[032;1mCPU Model:\e[0m $cname"
 echo -e "\e[032;1mNumber Of Cores:\e[0m $cores"
 echo -e "\e[032;1mCPU Frequency:\e[0m $freq MHz"
@@ -158,15 +157,11 @@ echo -e "\e[032;1mIsp Name:\e[0m $ISP"
 echo -e "\e[032;1mCity:\e[0m $CITY"
 echo -e "\e[032;1mTime:\e[0m $WKT"
 echo -e "\e[033;1mIPVPS:\e[0m $IPVPS"
-echo -e "------------------------------------------------------------------------------------------------------------------------"
-echo -e "   \e[$text Traffic${NC}      \e[${text}Today \e[0m"
-echo -e "   \e[$text Download${NC}   \e[${text}$today_tx \e[0m"
-echo -e "   \e[$text Upload${NC}     \e[${text}$today_rx \e[0m"
-echo -e "   \e[$text Total${NC}    \e[${text}  $todayd \e[0m"
-echo -e "------------------------------------------------------------------------------------------------------------------------"
-echo -e " \e[$text   Ssh/Ovpn  Vmess  Vless  VlessXtls  Trojan-Ws  Trojan-Tls \e[0m "    
-echo -e " \e[$below      $total_ssh        $vmess      $vless       $xtls          $trws          $trtls \e[0m "
-echo -e "------------------------------------------------------------------------------------------------------------------------"
+echo -e "-----------------------------------------------------"
+echo -e "PENGGUNAAN BANDWIDTH"
+echo -e "${BIBlue} Today   : $ttoday"
+echo -e "${BIBlue} Monthly : $tmon"
+echo -e "-----------------------------------------------------"
 echo -e "Menu Utama" | lolcat -a -d 10
 echo -e "  \e[$number (•1)\e[m \e[$below XRAY VMESS & VLESS\e[m"
 echo -e "  \e[$number (•2)\e[m \e[$below TROJAN XRAY & WS\e[m"
@@ -180,7 +175,6 @@ echo -e "  \e[$number (•9)\e[m \e[$below MENU THEMES\e[m"
 echo -e "  \e[$number (10)\e[m \e[$below REGIP ADMIN ONLY\e[m"
 echo -e "  \e[$number (11)\e[m \e[$below INFO ALL PORT\e[m"
 echo -e "  \e[$number (12)\e[m \e[$below CLEAR LOG VPS\e[m"
-echo -e ""
 echo -e "  \e[$below[Ctrl + C] For exit from main menu\e[m"
 echo -e "  \e[32mContact @aixxy7 t.me/aixxy7\e[m"
 echo -e ""
