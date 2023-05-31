@@ -42,6 +42,20 @@ export RECEIVE="[${YELLOW} RECEIVE ${NC}]"
 export BOLD="\e[1m"
 export WARNING="${RED}\e[5m"
 export UNDERLINE="\e[4m"
+# // CPU INFO
+export cpu_usage1="$(ps aux | awk 'BEGIN {sum=0} {sum+=$3}; END {print sum}')"
+export cpu_usage="$((${cpu_usage1/\.*} / ${corediilik:-1}))"
+export cpu_usage+=" %"
+
+# // OS UPTIME
+export uptime="$(uptime -p | cut -d " " -f 2-10)"
+
+# // KERNEL
+export kernelku=$(uname -r)
+
+# // DATE
+export harini=`date -d "0 days" +"%d-%m-%Y"`
+export jam=`date -d "0 days" +"%X"`
 #Domain
 domain=$(cat /usr/local/etc/xray/domain)
 ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10)
@@ -150,8 +164,12 @@ ascii=$(cat /usr/bin/test)
 clear
 echo "--------------- Welcome Premium Script -------------------"
 echo "--------------- Kenn Hiroyuki x Alexxa -------------------"
+echo -e "\e[032;1mDate        : $harini"
+echo -e "\e[032;1mTime        : $jam"
+echo -e "----------------------------------------------------------"
 echo -e "\e[032;1mIsp Name:\e[0m $ISP"
 echo -e "\e[032;1mTotal CPU:\e[0m $cores Core"
+echo -e "\e[032;1mPenggunaan CPU:\e[0m $cpu_usage"
 echo -e "\e[032;1mTotal Amount Of RAM:\e[0m $tram MB"
 echo -e "----------------------------------------------------------"
 echo -e "PENGGUNAAN BANDWIDTH"
