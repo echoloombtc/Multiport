@@ -1,31 +1,27 @@
-#wget https://github.com/${GitUser}/
-GitUser="kenDevXD"
-#IZIN SCRIPT
-MYIP=$(curl -sS ipv4.icanhazip.com)
-echo -e "\e[32mloading...\e[0m"
-clear
-# Valid Script
-VALIDITY () {
-    today=`date -d "0 days" +"%Y-%m-%d"`
-    Exp1=$(curl https://raw.githubusercontent.com/${GitUser}/allow/main/ipvps.conf | grep $MYIP | awk '{print $4}')
-    if [[ $today < $Exp1 ]]; then
-    echo -e "\e[32mYOUR SCRIPT ACTIVE..\e[0m"
-    else
-    echo -e "\e[31mYOUR SCRIPT HAS EXPIRED!\e[0m";
-    echo -e "\e[31mPlease renew your ipvps first\e[0m"
-    exit 0
-fi
-}
-IZIN=$(curl https://raw.githubusercontent.com/${GitUser}/allow/main/ipvps.conf | awk '{print $5}' | grep $MYIP)
-if [ $MYIP = $IZIN ]; then
-echo -e "\e[32mPermission Accepted...\e[0m"
-VALIDITY
+#!/bin/bash
+# Modifed By CyberVPN
+# ==========================================
+# Color
+RED='\033[0;31m'
+NC='\033[0m'
+GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+LIGHT='\033[0;37m'
+# ==========================================
+# Getting
+MYIP=$(wget -qO- ipinfo.io/ip);
+echo "Checking VPS"
+IZIN=$( curl ipinfo.io/ip | grep $MYIP )
+if [ $MYIP = $MYIP ]; then
+echo -e "${NC}${GREEN}Permission Accepted...${NC}"
 else
-echo -e "\e[31mPermission Denied!\e[0m";
-echo -e "\e[31mPlease buy script first\e[0m"
+echo -e "${NC}${RED}Permission Denied!${NC}";
+echo -e "${NC}${LIGHT}Fuck You!!"
 exit 0
 fi
-echo -e "\e[32mloading...\e[0m"
 clear
 Green_font_prefix="\033[32m" && Red_font_prefix="\033[31m" && Green_background_prefix="\033[42;37m" && Red_background_prefix="\033[41;37m" && Font_color_suffix="\033[0m"
 Info="${Green_font_prefix}[ON]${Font_color_suffix}"
@@ -38,19 +34,22 @@ sts="${Error}"
 fi
 clear
 echo -e ""
-echo -e "======================================"
-echo -e ""
-echo -e "     Status Autokill $sts        "
-echo -e ""
-echo -e "     [1]  AutoKill After 5 Minutes"
-echo -e "     [2]  AutoKill After 10 Minutes"
-echo -e "     [3]  AutoKill After 15 Minutes"
-echo -e "     [4]  Turn Off AutoKill/MultiLogin"
-echo -e "     [x]  Exit"
-echo -e "======================================"                                                                                                          
-echo -e ""
-read -p "     Select From Options [1-4 or x] :  " AutoKill
-read -p "     Multilogin Maximum Number Of Allowed: " max
+echo -e "${PURPLE}=================================="
+echo -e "${LIGHT}     Status Auto Banned $sts       "
+echo -e "${PURPLE}=================================="
+echo -e "${LIGHT}"
+echo -e "1. Auto Banned After 5 Minutes"
+echo -e "2. Auto Banned After 10 Minutes"
+echo -e "3. Auto Banned After 120 Minutes"
+echo -e "4. Turn Off Auto Banned/MultiLogin"
+echo -e "5. Exit"
+echo -e "${PURPLE}======================================"
+                echo -e "${LIGHT}       Auto banned By CyberVPN"
+                echo -e "${PURPLE}======================================"                                                                                                                                 
+                echo -e "${LIGHT}"
+                echo -e ""
+read -p "Select From Options [1-4 or x] :  " AutoKill
+read -p "Multilogin Maximum Number Of Allowed: " max
 echo -e ""
 case $AutoKill in
                 1)
@@ -60,13 +59,16 @@ case $AutoKill in
                 echo > /etc/cron.d/tendang
                 echo "# Autokill" >>/etc/cron.d/tendang
                 echo "*/5 * * * *  root /usr/bin/tendang $max" >>/etc/cron.d/tendang
+                
                 echo -e ""
-                echo -e "======================================"
+                echo -e "${PURPLE}======================================"
                 echo -e ""
-                echo -e "      Allowed MultiLogin : $max"
-                echo -e "      AutoKill Every     : 5 Minutes"      
+                echo -e "${LIGHT}     Allowed IP: $max"
+                echo -e "      Auto Banned Every     : 5 Minutes"      
                 echo -e ""
-                echo -e "======================================"                                                                                                                                 
+                echo -e "${PURPLE}======================================"
+                echo -e "${LIGHT}       Auto banned By CyberVPN"
+                echo -e "${PURPLE}======================================"                                                                                                                                 
                 exit                                                                  
                 ;;
                 2)
@@ -76,13 +78,16 @@ case $AutoKill in
                 echo > /etc/cron.d/tendang
                 echo "# Autokill" >>/etc/cron.d/tendang
                 echo "*/10 * * * *  root /usr/bin/tendang $max" >>/etc/cron.d/tendang
+                
                 echo -e ""
-                echo -e "======================================"
+                echo -e "${PURPLE}=================================="                                                                                                          
+echo -e ""
+                echo -e " ${LIGHT}     Allowed IP: $max"
+                echo -e "      Auto Banned Every     : 10 Minutes"
                 echo -e ""
-                echo -e "      Allowed MultiLogin : $max"
-                echo -e "      AutoKill Every     : 10 Minutes"
-                echo -e ""
-                echo -e "======================================"
+                echo -e "${PURPLE}======================================"
+                echo -e "${LIGHT}       Auto banned By CyberVPN"
+                echo -e "${PURPLE}======================================"                                                                                                                                 
                 exit
                 ;;
                 3)
@@ -91,26 +96,159 @@ case $AutoKill in
                 clear
                 echo > /etc/cron.d/tendang
                 echo "# Autokill" >>/etc/cron.d/tendang
-                echo "*/15 * * * *  root /usr/bin/tendang $max" >>/etc/cron.d/tendang
+                echo "*/120 * * * *  root /usr/bin/tendang $max" >>/etc/cron.d/tendang
+                
                 echo -e ""
-                echo -e "======================================"
+                echo -e "${PURPLE}=================================="                                                                                                          
+echo -e ""
+                echo -e "${LIGHT}     Allowed IP : $max"
+                echo -e "      Auto Banned Every     : 120 Minutes"
                 echo -e ""
-                echo -e "      Allowed MultiLogin : $max"
-                echo -e "      AutoKill Every     : 15 Minutes"
-                echo -e ""
-                echo -e "======================================"
-                exit
+                echo -e "${PURPLE}======================================"
+                echo -e "${LIGHT}       Auto banned By CyberVPN"
+                echo -e "${PURPLE}======================================"                                                                                                                                 
+                 exit
                 ;;
                 4)
                 clear
                 echo > /etc/cron.d/tendang
                 echo -e ""
-                echo -e "======================================"
+                echo -e "${PURPLE}=================================="                                                                                                          
+  echo -e ""
+                echo -e "${LIGHT}    Auto Banned MultiLogin Turned ${RED}OFF  "
                 echo -e ""
-                echo -e "      AutoKill MultiLogin Turned Off  "
-                echo -e ""
-                echo -e "======================================"
+                echo -e "${PURPLE}======================================"
+                echo -e "${LIGHT}       Auto banned By CyberVPN"
+                echo -e "${PURPLE}======================================"                                                                                                                                 
+                   exit
+                ;;
+                x)
+                clear
                 exit
+                ;;
+        esac#!/bin/bash
+# Modifed By CyberVPN
+# ==========================================
+# Color
+RED='\033[0;31m'
+NC='\033[0m'
+GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+LIGHT='\033[0;37m'
+# ==========================================
+# Getting
+MYIP=$(wget -qO- ipinfo.io/ip);
+echo "Checking VPS"
+IZIN=$( curl ipinfo.io/ip | grep $MYIP )
+if [ $MYIP = $MYIP ]; then
+echo -e "${NC}${GREEN}Permission Accepted...${NC}"
+else
+echo -e "${NC}${RED}Permission Denied!${NC}";
+echo -e "${NC}${LIGHT}Fuck You!!"
+exit 0
+fi
+clear
+Green_font_prefix="\033[32m" && Red_font_prefix="\033[31m" && Green_background_prefix="\033[42;37m" && Red_background_prefix="\033[41;37m" && Font_color_suffix="\033[0m"
+Info="${Green_font_prefix}[ON]${Font_color_suffix}"
+Error="${Red_font_prefix}[OFF]${Font_color_suffix}"
+cek=$(grep -c -E "^# Autokill" /etc/cron.d/tendang)
+if [[ "$cek" = "1" ]]; then
+sts="${Info}"
+else
+sts="${Error}"
+fi
+clear
+echo -e ""
+echo -e "${PURPLE}=================================="
+echo -e "${LIGHT}     Status Auto Banned $sts       "
+echo -e "${PURPLE}=================================="
+echo -e "${LIGHT}"
+echo -e "1. Auto Banned After 5 Minutes"
+echo -e "2. Auto Banned After 10 Minutes"
+echo -e "3. Auto Banned After 120 Minutes"
+echo -e "4. Turn Off Auto Banned/MultiLogin"
+echo -e "5. Exit"
+echo -e "${PURPLE}======================================"
+                echo -e "${LIGHT}       Auto banned By CyberVPN"
+                echo -e "${PURPLE}======================================"                                                                                                                                 
+                echo -e "${LIGHT}"
+                echo -e ""
+read -p "Select From Options [1-4 or x] :  " AutoKill
+read -p "Multilogin Maximum Number Of Allowed: " max
+echo -e ""
+case $AutoKill in
+                1)
+                echo -e ""
+                sleep 1
+                clear
+                echo > /etc/cron.d/tendang
+                echo "# Autokill" >>/etc/cron.d/tendang
+                echo "*/5 * * * *  root /usr/bin/tendang $max" >>/etc/cron.d/tendang
+                
+                echo -e ""
+                echo -e "${PURPLE}======================================"
+                echo -e ""
+                echo -e "${LIGHT}     Allowed IP: $max"
+                echo -e "      Auto Banned Every     : 5 Minutes"      
+                echo -e ""
+                echo -e "${PURPLE}======================================"
+                echo -e "${LIGHT}       Auto banned By CyberVPN"
+                echo -e "${PURPLE}======================================"                                                                                                                                 
+                exit                                                                  
+                ;;
+                2)
+                echo -e ""
+                sleep 1
+                clear
+                echo > /etc/cron.d/tendang
+                echo "# Autokill" >>/etc/cron.d/tendang
+                echo "*/10 * * * *  root /usr/bin/tendang $max" >>/etc/cron.d/tendang
+                
+                echo -e ""
+                echo -e "${PURPLE}=================================="                                                                                                          
+echo -e ""
+                echo -e " ${LIGHT}     Allowed IP: $max"
+                echo -e "      Auto Banned Every     : 10 Minutes"
+                echo -e ""
+                echo -e "${PURPLE}======================================"
+                echo -e "${LIGHT}       Auto banned By CyberVPN"
+                echo -e "${PURPLE}======================================"                                                                                                                                 
+                exit
+                ;;
+                3)
+                echo -e ""
+                sleep 1
+                clear
+                echo > /etc/cron.d/tendang
+                echo "# Autokill" >>/etc/cron.d/tendang
+                echo "*/120 * * * *  root /usr/bin/tendang $max" >>/etc/cron.d/tendang
+                
+                echo -e ""
+                echo -e "${PURPLE}=================================="                                                                                                          
+echo -e ""
+                echo -e "${LIGHT}     Allowed IP : $max"
+                echo -e "      Auto Banned Every     : 120 Minutes"
+                echo -e ""
+                echo -e "${PURPLE}======================================"
+                echo -e "${LIGHT}       Auto banned By CyberVPN"
+                echo -e "${PURPLE}======================================"                                                                                                                                 
+                 exit
+                ;;
+                4)
+                clear
+                echo > /etc/cron.d/tendang
+                echo -e ""
+                echo -e "${PURPLE}=================================="                                                                                                          
+  echo -e ""
+                echo -e "${LIGHT}    Auto Banned MultiLogin Turned ${RED}OFF  "
+                echo -e ""
+                echo -e "${PURPLE}======================================"
+                echo -e "${LIGHT}       Auto banned By CyberVPN"
+                echo -e "${PURPLE}======================================"                                                                                                                                 
+                   exit
                 ;;
                 x)
                 clear
